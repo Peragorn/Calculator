@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    boolean clear_screen = true;
+    boolean isCalculatorFieldClear = true;
     boolean operator_state = false;
     boolean insert_state = false;
     boolean last_click = false;
@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void insert_text(String text) {
         EditText screen = (EditText) findViewById(R.id.screen);
-        if (this.clear_screen) {
+        if (this.isCalculatorFieldClear) {
             screen.setText("");
-            this.clear_screen = false;
+            this.isCalculatorFieldClear = false;
         }
         this.insert_state = true;
         this.last_click = true;
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             this.operand1 = Float.parseFloat(screen.getText().toString());
         }
         this.operator_state = true;
-        this.clear_screen = true;
+        this.isCalculatorFieldClear = true;
         this.last_click = false;
         if (operator.equals("+")) this.operator = "+";
         else if (operator.equals("-")) this.operator = "-";
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         else if (operator.equals("√")) {
             this.answer = (float) Math.sqrt(Float.parseFloat(screen.getText().toString()));
             screen.setText(this.answer + "");
-            this.clear_screen = true;
+            this.isCalculatorFieldClear = true;
             this.operand1 = 0f;
             this.operand2 = 0f;
             this.operator = "";
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (operator.equals("d")) {
             this.answer = 1 / Float.parseFloat(screen.getText().toString());
             screen.setText(this.answer + "");
-            this.clear_screen = true;
+            this.isCalculatorFieldClear = true;
             this.operand1 = 0f;
             this.operand2 = 0f;
             this.operator = "";
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 //            case R.id.buttonExe:
 //                if (screen.getText().toString().length() > 0 && !this.operator.equals("")) {
 //                    calculator();
-//                    this.clear_screen = true;
+//                    this.isCalculatorFieldClear = true;
 //                    this.operand1 = 0f;
 //                    this.operand2 = 0f;
 //                    this.operator = "";
@@ -177,10 +177,10 @@ public class MainActivity extends AppCompatActivity {
                 if (screen.getText().toString().length() > 1) {
                     String screen_new = screen.getText().toString().substring(0, screen.getText().toString().length() - 1);
                     screen.setText(screen_new);
-                    this.clear_screen = false;
+                    this.isCalculatorFieldClear = false;
                 } else {
                     screen.setText("0");
-                    this.clear_screen = true;
+                    this.isCalculatorFieldClear = true;
                 }
                 break;
             case R.id.buttonC:
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 this.operator_state = false;
                 this.insert_state = false;
                 this.last_click = false;
-                this.clear_screen = true;
+                this.isCalculatorFieldClear = true;
                 screen.setText("0");
                 break;
         }
