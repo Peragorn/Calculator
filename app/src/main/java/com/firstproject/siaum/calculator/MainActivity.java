@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (this.operator.equals("*")) {
             this.answer = operand1.multiply(operand2);
         } else if (this.operator.equals("/")) {
-                this.answer = operand1.divide(operand2, 30, RoundingMode.CEILING).stripTrailingZeros();
+            this.answer = new BigDecimal(operand1.divide(operand2, 15, RoundingMode.CEILING).stripTrailingZeros().toPlainString());
 
         } else if (this.operator.equals("^")) {
 //            this.answer = (float) Math.pow(this.operand1, this.operand2);
