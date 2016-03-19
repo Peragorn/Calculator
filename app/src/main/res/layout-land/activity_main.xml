@@ -6,16 +6,26 @@
     tools:context="com.firstproject.siaum.calculator.MainActivity"
     android:paddingBottom="-2dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <EditText
+        android:id="@+id/screen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:cursorVisible="false"
+        android:editable="false"
+        android:gravity="right"
+        android:textSize="40dp"
+        android:text="0"
+        android:layout_above="@+id/buttonDivision"
+        android:layout_alignParentTop="true">
+    </EditText>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="="
         android:id="@+id/buttonEquals"
+        android:onClick="ButtonClickHandler"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="2dp" />
@@ -25,6 +35,7 @@
         android:layout_height="wrap_content"
         android:text="+"
         android:id="@+id/buttonAdd"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/buttonEquals"
         android:layout_alignEnd="@+id/buttonEquals"
         android:layout_alignStart="@+id/buttonEquals"
@@ -35,6 +46,7 @@
         android:layout_height="wrap_content"
         android:text="-"
         android:id="@+id/buttonMinus"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/buttonAdd"
         android:layout_alignEnd="@+id/buttonAdd"
         android:layout_alignStart="@+id/buttonAdd"
@@ -45,6 +57,7 @@
         android:layout_height="wrap_content"
         android:text="x"
         android:id="@+id/buttonMultiplication"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/buttonMinus"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="-2dp" />
@@ -54,6 +67,7 @@
         android:layout_height="wrap_content"
         android:text="/"
         android:id="@+id/buttonDivision"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/buttonMultiplication"
         android:layout_alignStart="@+id/buttonMultiplication"
         android:layout_marginBottom="-2dp" />
@@ -63,6 +77,7 @@
         android:layout_height="wrap_content"
         android:text="+/-"
         android:id="@+id/buttonPlusMinus"
+        android:onClick="ButtonClickHandler"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/buttonEquals"
         android:layout_marginBottom="2dp" />
@@ -72,6 +87,7 @@
         android:layout_height="wrap_content"
         android:text="3"
         android:id="@+id/button3"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/buttonEquals"
         android:layout_toStartOf="@+id/buttonEquals"
         android:layout_marginBottom="-2dp" />
@@ -81,6 +97,7 @@
         android:layout_height="wrap_content"
         android:text="6"
         android:id="@+id/button6"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/button3"
         android:layout_toStartOf="@+id/buttonMinus"
         android:layout_marginBottom="-2dp" />
@@ -90,6 +107,7 @@
         android:layout_height="wrap_content"
         android:text="9"
         android:id="@+id/button9"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/button6"
         android:layout_toStartOf="@+id/buttonMultiplication"
         android:layout_marginBottom="-2dp" />
@@ -99,6 +117,7 @@
         android:layout_height="wrap_content"
         android:text="DEL"
         android:id="@+id/buttonDel"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/buttonMultiplication"
         android:layout_toStartOf="@+id/buttonMultiplication"
         android:layout_marginBottom="-2dp" />
@@ -108,6 +127,7 @@
         android:layout_height="wrap_content"
         android:text="5"
         android:id="@+id/button5"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/button2"
         android:layout_toLeftOf="@+id/buttonPlusMinus"
         android:layout_marginBottom="-2dp" />
@@ -117,6 +137,7 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:id="@+id/button0"
+        android:onClick="ButtonClickHandler"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/buttonPlusMinus"
         android:layout_marginBottom="2dp" />
@@ -126,6 +147,7 @@
         android:layout_height="wrap_content"
         android:text="C"
         android:id="@+id/buttonC"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/button8"
         android:layout_toLeftOf="@+id/buttonPlusMinus"
         android:layout_marginBottom="-2dp" />
@@ -135,6 +157,7 @@
         android:layout_height="wrap_content"
         android:text="8"
         android:id="@+id/button8"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/button5"
         android:layout_toLeftOf="@+id/buttonPlusMinus"
         android:layout_marginBottom="-2dp" />
@@ -144,6 +167,7 @@
         android:layout_height="wrap_content"
         android:text="2"
         android:id="@+id/button2"
+        android:onClick="ButtonClickHandler"
         android:layout_above="@+id/button0"
         android:layout_toLeftOf="@+id/buttonPlusMinus"
         android:layout_marginBottom="-2dp" />
@@ -153,6 +177,7 @@
         android:layout_height="wrap_content"
         android:text="."
         android:id="@+id/buttonPoint"
+        android:onClick="ButtonClickHandler"
         android:paddingBottom="2dp"
         android:layout_below="@+id/button2"
         android:layout_toStartOf="@+id/button0" />
@@ -162,6 +187,7 @@
         android:layout_height="wrap_content"
         android:text="1"
         android:id="@+id/button1"
+        android:onClick="ButtonClickHandler"
         android:paddingBottom="-2dp"
         android:layout_below="@+id/button5"
         android:layout_alignStart="@+id/buttonPoint" />
@@ -171,6 +197,7 @@
         android:layout_height="wrap_content"
         android:text="4"
         android:id="@+id/button4"
+        android:onClick="ButtonClickHandler"
         android:paddingBottom="-2dp"
         android:layout_below="@+id/button8"
         android:layout_toStartOf="@+id/button5" />
@@ -180,6 +207,7 @@
         android:layout_height="wrap_content"
         android:text="7"
         android:id="@+id/button7"
+        android:onClick="ButtonClickHandler"
         android:paddingBottom="-2dp"
         android:layout_alignTop="@+id/button8"
         android:layout_alignStart="@+id/button4" />
@@ -189,6 +217,7 @@
         android:layout_height="wrap_content"
         android:text="MR"
         android:id="@+id/buttonMR"
+        android:onClick="ButtonClickHandler"
         android:paddingBottom="-2dp"
         android:layout_alignTop="@+id/buttonC"
         android:layout_alignStart="@+id/button7" />
