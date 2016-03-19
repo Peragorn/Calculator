@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         } else if (this.operator.equals("*")) {
             this.answer = operand1.multiply(operand2);
         } else if (this.operator.equals("/")) {
-            this.answer = operand1.divide(operand2);
+                this.answer = operand1.divide(operand2, 30, RoundingMode.CEILING).stripTrailingZeros();
+
         } else if (this.operator.equals("^")) {
 //            this.answer = (float) Math.pow(this.operand1, this.operand2);
         } else if (this.operator.equals("%")) {
