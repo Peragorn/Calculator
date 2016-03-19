@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,9 +12,10 @@ public class MainActivity extends AppCompatActivity {
     boolean operator_state = false;
     boolean insert_state = false;
     boolean last_click = false;
-    float operand1 = 0f;
-    float operand2 = 0f;
-    float answer = 0f;
+    BigDecimal operand1 ;
+    BigDecimal operand2 ;
+
+    BigDecimal answer = new BigDecimal("0.0");
     String operator = "";
 
     @Override
@@ -33,22 +35,23 @@ public class MainActivity extends AppCompatActivity {
             screen.setText("0");
         }
         if (screen.getText().toString().length() > 0) {
-            this.operand2 = Float.parseFloat(screen.getText().toString());
+//            this.operand2 = Float.parseFloat(screen.getText().toString());
+            this.operand2 = new BigDecimal(screen.getText().toString());
         }
         if (this.operator.equals("+")) {
-            this.answer = this.operand1 + this.operand2;
+            this.answer = operand1.add(operand2);
         } else if (this.operator.equals("-")) {
-            this.answer = this.operand1 - this.operand2;
+            this.answer = operand1.subtract(operand2);
         } else if (this.operator.equals("*")) {
-            this.answer = this.operand1 * this.operand2;
+            this.answer = operand1.multiply(operand2);
         } else if (this.operator.equals("/")) {
-            this.answer = this.operand1 / this.operand2;
+            this.answer = operand1.divide(operand2);
         } else if (this.operator.equals("^")) {
-            this.answer = (float) Math.pow(this.operand1, this.operand2);
+//            this.answer = (float) Math.pow(this.operand1, this.operand2);
         } else if (this.operator.equals("%")) {
-            this.answer = operand1 % this.operand2;
+//            this.answer = operand1 % this.operand2;
         } else {
-            this.answer = Float.parseFloat(screen.getText().toString());
+//            this.answer = Float.parseFloat(screen.getText().toString());
         }
 
         screen.setText(this.answer + "");
@@ -72,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
             calculator();
         }
         if (screen.getText().toString().length() > 0) {
-            this.operand1 = Float.parseFloat(screen.getText().toString());
+//            this.operand1 = Float.parseFloat(screen.getText().toString());
+            this.operand1 = new BigDecimal(screen.getText().toString());
         }
         this.operator_state = true;
         this.isCalculatorFieldClear = true;
@@ -82,20 +86,20 @@ public class MainActivity extends AppCompatActivity {
         else if (operator.equals("*")) this.operator = "*";
         else if (operator.equals("/")) this.operator = "/";
         else if (operator.equals("√")) {
-            this.answer = (float) Math.sqrt(Float.parseFloat(screen.getText().toString()));
+//            this.answer = (float) Math.sqrt(Float.parseFloat(screen.getText().toString()));
             screen.setText(this.answer + "");
             this.isCalculatorFieldClear = true;
-            this.operand1 = 0f;
-            this.operand2 = 0f;
+            this.operand1 = null;
+            this.operand2 = null;
             this.operator = "";
             this.last_click = true;
             this.operator_state = false;
         } else if (operator.equals("d")) {
-            this.answer = 1 / Float.parseFloat(screen.getText().toString());
+//            this.answer = 1 / Float.parseFloat(screen.getText().toString());
             screen.setText(this.answer + "");
             this.isCalculatorFieldClear = true;
-            this.operand1 = 0f;
-            this.operand2 = 0f;
+            this.operand1 = null;
+            this.operand2 = null;
             this.operator = "";
             this.last_click = true;
             this.operator_state = false;
@@ -184,9 +188,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.buttonC:
-                this.operand1 = 0f;
-                this.operand2 = 0f;
-                this.answer = 0f;
+                this.operand1 = null;
+                this.operand2 = null;
+                this.answer = null;
                 this.operator = "";
                 this.operator_state = false;
                 this.insert_state = false;
