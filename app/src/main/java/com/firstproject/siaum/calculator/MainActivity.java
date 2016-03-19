@@ -11,10 +11,10 @@ public class MainActivity extends AppCompatActivity {
     boolean operator_state = false;
     boolean insert_state = false;
     boolean last_click = false;
-    float Operand1 = 0f;
-    float Operand2 = 0f;
-    float Answer = 0f;
-    String Operator = "";
+    float operand1 = 0f;
+    float operand2 = 0f;
+    float answer = 0f;
+    String operator = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,25 +33,25 @@ public class MainActivity extends AppCompatActivity {
             screen.setText("0");
         }
         if (screen.getText().toString().length() > 0) {
-            this.Operand2 = Float.parseFloat(screen.getText().toString());
+            this.operand2 = Float.parseFloat(screen.getText().toString());
         }
-        if (this.Operator.equals("+")) {
-            this.Answer = this.Operand1 + this.Operand2;
-        } else if (this.Operator.equals("-")) {
-            this.Answer = this.Operand1 - this.Operand2;
-        } else if (this.Operator.equals("*")) {
-            this.Answer = this.Operand1 * this.Operand2;
-        } else if (this.Operator.equals("/")) {
-            this.Answer = this.Operand1 / this.Operand2;
-        } else if (this.Operator.equals("^")) {
-            this.Answer = (float) Math.pow(this.Operand1, this.Operand2);
-        } else if (this.Operator.equals("%")) {
-            this.Answer = Operand1 % this.Operand2;
+        if (this.operator.equals("+")) {
+            this.answer = this.operand1 + this.operand2;
+        } else if (this.operator.equals("-")) {
+            this.answer = this.operand1 - this.operand2;
+        } else if (this.operator.equals("*")) {
+            this.answer = this.operand1 * this.operand2;
+        } else if (this.operator.equals("/")) {
+            this.answer = this.operand1 / this.operand2;
+        } else if (this.operator.equals("^")) {
+            this.answer = (float) Math.pow(this.operand1, this.operand2);
+        } else if (this.operator.equals("%")) {
+            this.answer = operand1 % this.operand2;
         } else {
-            this.Answer = Float.parseFloat(screen.getText().toString());
+            this.answer = Float.parseFloat(screen.getText().toString());
         }
 
-        screen.setText(this.Answer + "");
+        screen.setText(this.answer + "");
     }
 
     public void insert_text(String text) {
@@ -72,35 +72,38 @@ public class MainActivity extends AppCompatActivity {
             calculator();
         }
         if (screen.getText().toString().length() > 0) {
-            this.Operand1 = Float.parseFloat(screen.getText().toString());
+            this.operand1 = Float.parseFloat(screen.getText().toString());
         }
         this.operator_state = true;
         this.clear_screen = true;
         this.last_click = false;
-        if (operator.equals("+")) this.Operator = "+";
-        else if (operator.equals("-")) this.Operator = "-";
-        else if (operator.equals("*")) this.Operator = "*";
-        else if (operator.equals("/")) this.Operator = "/";
+        if (operator.equals("+")) this.operator = "+";
+        else if (operator.equals("-")) this.operator = "-";
+        else if (operator.equals("*")) this.operator = "*";
+        else if (operator.equals("/")) this.operator = "/";
         else if (operator.equals("√")) {
-            this.Answer = (float) Math.sqrt(Float.parseFloat(screen.getText().toString()));
-            screen.setText(this.Answer + "");
+            this.answer = (float) Math.sqrt(Float.parseFloat(screen.getText().toString()));
+            screen.setText(this.answer + "");
             this.clear_screen = true;
-            this.Operand1 = 0f;
-            this.Operand2 = 0f;
-            this.Operator = "";
+            this.operand1 = 0f;
+            this.operand2 = 0f;
+            this.operator = "";
             this.last_click = true;
             this.operator_state = false;
         } else if (operator.equals("d")) {
-            this.Answer = 1 / Float.parseFloat(screen.getText().toString());
-            screen.setText(this.Answer + "");
+            this.answer = 1 / Float.parseFloat(screen.getText().toString());
+            screen.setText(this.answer + "");
             this.clear_screen = true;
-            this.Operand1 = 0f;
-            this.Operand2 = 0f;
-            this.Operator = "";
+            this.operand1 = 0f;
+            this.operand2 = 0f;
+            this.operator = "";
             this.last_click = true;
             this.operator_state = false;
-        } else if (operator.equals("^")) this.Operator = "^";
-        else if (operator.equals("%")) this.Operator = "%";
+        } else if (operator.equals("^")) this.operator = "^";
+        else if (operator.equals("%")) this.operator = "%";
+        else if (operator.equals("=")){
+            this.operator = "=";
+        }
     }
 
     public void ButtonClickHandler(View v) {
@@ -152,21 +155,24 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.buttonDivision:
                 set_operator("/");
-//                break;
+                break;
+            case R.id.buttonEquals:
+                set_operator("=");
+                break;
 //            case R.id.buttonSqr:	set_operator("√"); break;
 //            case R.id.buttonPow:	set_operator("^"); break;
 //            case R.id.buttonMod:	set_operator("%"); break;
 //            case R.id.buttonOnediv:	set_operator("d"); break;
 //            case R.id.buttonExe:
-                if (screen.getText().toString().length() > 0 && !this.Operator.equals("")) {
-                    calculator();
-                    this.clear_screen = true;
-                    this.Operand1 = 0f;
-                    this.Operand2 = 0f;
-                    this.Operator = "";
-                    this.operator_state = false;
-                }
-                break;
+//                if (screen.getText().toString().length() > 0 && !this.operator.equals("")) {
+//                    calculator();
+//                    this.clear_screen = true;
+//                    this.operand1 = 0f;
+//                    this.operand2 = 0f;
+//                    this.operator = "";
+//                    this.operator_state = false;
+//                }
+//                break;
             case R.id.buttonDel:
                 if (screen.getText().toString().length() > 1) {
                     String screen_new = screen.getText().toString().substring(0, screen.getText().toString().length() - 1);
@@ -178,10 +184,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.buttonC:
-                this.Operand1 = 0f;
-                this.Operand2 = 0f;
-                this.Answer = 0f;
-                this.Operator = "";
+                this.operand1 = 0f;
+                this.operand2 = 0f;
+                this.answer = 0f;
+                this.operator = "";
                 this.operator_state = false;
                 this.insert_state = false;
                 this.last_click = false;
