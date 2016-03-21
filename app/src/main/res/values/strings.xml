@@ -1,3 +1,48 @@
 <resources>
     <string name="app_name">Calculator</string>
+
+    <string name="character_equal">=</string>
+    <string name="character_plus_minus">+/-</string>
+    <string name="character_coma">.</string>
+    <string name="character_plus">+</string>
+    <string name="character_minus">-</string>
+    <string name="character_multiple">*</string>
+    <string name="character_divide">/</string>
+    <string name="character_C">C</string>
+    <string name="character_delete">DEL</string>
+    <string name="character_bracket_left">(</string>
+    <string name="character_bracket_right">)</string>
+    <string name="character_sqrt">√</string>
+    <string name="character_percent">%</string>
+    <string name="character_pi">π</string>
+    <string name="character_e">e</string>
+
+    <string name="character_0">0</string>
+    <string name="character_1">1</string>
+    <string name="character_2">2</string>
+    <string name="character_3">3</string>
+    <string name="character_4">4</string>
+    <string name="character_5">5</string>
+    <string name="character_6">6</string>
+    <string name="character_7">7</string>
+    <string name="character_8">8</string>
+    <string name="character_9">9</string>
+
+    <string name="function_sinh">sinh</string>
+    <string name="function_cosh">cosh</string>
+    <string name="function_tanh">tanh</string>
+    <string name="function_rand">rand</string>
+    <string name="function_sin">sin</string>
+    <string name="function_cos">cos</string>
+    <string name="function_tan">tan</string>
+    <string name="function_sqrt">√</string>
+    <string name="function_sqrt_3">3√</string>
+    <string name="function_one_by_x">1/x</string>
+    <string name="function_log">log</string>
+    <string name="function_log_10">log10</string>
+    <string name="function_power_2">x^2</string>
+    <string name="function_power_3">x^3</string>
+    <string name="function_power_n">x^n</string>
+    <string name="function_factorial">x!</string>
+
 </resources>

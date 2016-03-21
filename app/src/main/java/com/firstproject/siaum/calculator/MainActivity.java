@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         if (bar != null) {
             bar.hide();
         }
-        
     }
 
     public void calculator() {
