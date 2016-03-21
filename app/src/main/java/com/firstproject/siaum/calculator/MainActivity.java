@@ -38,31 +38,40 @@ public class MainActivity extends AppCompatActivity {
         
     }
 
-    public void calculator() {
-        EditText screen = (EditText) findViewById(R.id.screen);
-        if (screen.getText().toString().equals(".")) {
-            screen.setText("0");
-        }
-        if (screen.getText().toString().length() > 0) {
-//            this.operand2 = Float.parseFloat(screen.getText().toString());
-            this.operand2 = new BigDecimal(screen.getText().toString());
-        }
-        if (this.operator.equals("+")) {
-            this.answer = operand1.add(operand2);
-        } else if (this.operator.equals("-")) {
-            this.answer = operand1.subtract(operand2);
-        } else if (this.operator.equals("*")) {
-            this.answer = operand1.multiply(operand2);
-        } else if (this.operator.equals("/")) {
-            this.answer = new BigDecimal(operand1.divide(operand2, 15, RoundingMode.CEILING).stripTrailingZeros().toPlainString());
+//    public void calculator() {
+//        EditText screen = (EditText) findViewById(R.id.screen);
+//        if (screen.getText().toString().equals(".")) {
+//            screen.setText("0");
+//        }
+//        if (screen.getText().toString().length() > 0) {
+////            this.operand2 = Float.parseFloat(screen.getText().toString());
+//            this.operand2 = new BigDecimal(screen.getText().toString());
+//        }
+//        if (this.operator.equals("+")) {
+//            this.answer = operand1.add(operand2);
+//        } else if (this.operator.equals("-")) {
+//            this.answer = operand1.subtract(operand2);
+//        } else if (this.operator.equals("*")) {
+//            this.answer = operand1.multiply(operand2);
+//        } else if (this.operator.equals("/")) {
+//            this.answer = new BigDecimal(operand1.divide(operand2, 15, RoundingMode.CEILING).stripTrailingZeros().toPlainString());
+//
+//        } else if (this.operator.equals("^")) {
+////            this.answer = (float) Math.pow(this.operand1, this.operand2);
+//        } else if (this.operator.equals("%")) {
+////            this.answer = operand1 % this.operand2;
+//        } else {
+////            this.answer = Float.parseFloat(screen.getText().toString());
+//        }
+//
+//        screen.setText(this.answer + "");
+//    }
 
-        } else if (this.operator.equals("^")) {
-//            this.answer = (float) Math.pow(this.operand1, this.operand2);
-        } else if (this.operator.equals("%")) {
-//            this.answer = operand1 % this.operand2;
-        } else {
-//            this.answer = Float.parseFloat(screen.getText().toString());
-        }
+    public void calculate(){
+        EditText screen = (EditText) findViewById(R.id.screen);
+
+        expression = new Expression(screen.getText().toString());
+        this.answer = expression.eval();
 
         screen.setText(this.answer + "");
     }
@@ -89,48 +98,62 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void set_operator(String operator) {
+//    public void set_operator(String operator) {
+//        EditText screen = (EditText) findViewById(R.id.screen);
+//        if (screen.getText().toString().equals(".")) screen.setText("0");
+//        if (this.insert_state && this.operator_state && this.last_click) {
+//            calculator();
+//        }
+//        if (screen.getText().toString().length() > 0) {
+////            this.operand1 = Float.parseFloat(screen.getText().toString());
+//            this.operand1 = new BigDecimal(screen.getText().toString());
+//        }
+//        this.operator_state = true;
+//        this.isCalculatorFieldClear = true;
+//        this.last_click = false;
+//        if (operator.equals("+")) this.operator = "+";
+//        else if (operator.equals("-")) this.operator = "-";
+//        else if (operator.equals("*")) this.operator = "*";
+//        else if (operator.equals("/")) this.operator = "/";
+//        else if (operator.equals("√")) {
+////            this.answer = (float) Math.sqrt(Float.parseFloat(screen.getText().toString()));
+//            screen.setText(this.answer + "");
+//            this.isCalculatorFieldClear = true;
+//            this.operand1 = null;
+//            this.operand2 = null;
+//            this.operator = "";
+//            this.last_click = true;
+//            this.operator_state = false;
+//        } else if (operator.equals("d")) {
+////            this.answer = 1 / Float.parseFloat(screen.getText().toString());
+//            screen.setText(this.answer + "");
+//            this.isCalculatorFieldClear = true;
+//            this.operand1 = null;
+//            this.operand2 = null;
+//            this.operator = "";
+//            this.last_click = true;
+//            this.operator_state = false;
+//        } else if (operator.equals("^")) this.operator = "^";
+//        else if (operator.equals("%")) this.operator = "%";
+//        else if (operator.equals("=")) {
+//            this.operator = "=";
+//        }
+//    }
+
+    public void checkIsNumberBeforeComaCharacter(){
         EditText screen = (EditText) findViewById(R.id.screen);
-        if (screen.getText().toString().equals(".")) screen.setText("0");
-        if (this.insert_state && this.operator_state && this.last_click) {
-            calculator();
+        String screenText = screen.getText().toString();
+        if(screenText.substring(screenText.length() - 1 ).equals("0") && screenText.length()==1){
+            insert_text("0.");
+            return;
         }
-        if (screen.getText().toString().length() > 0) {
-//            this.operand1 = Float.parseFloat(screen.getText().toString());
-            this.operand1 = new BigDecimal(screen.getText().toString());
+        if (screenText.substring(screenText.length() - 1 ).matches(".*\\d+.*")) {
+            insert_text(".");
         }
-        this.operator_state = true;
-        this.isCalculatorFieldClear = true;
-        this.last_click = false;
-        if (operator.equals("+")) this.operator = "+";
-        else if (operator.equals("-")) this.operator = "-";
-        else if (operator.equals("*")) this.operator = "*";
-        else if (operator.equals("/")) this.operator = "/";
-        else if (operator.equals("√")) {
-//            this.answer = (float) Math.sqrt(Float.parseFloat(screen.getText().toString()));
-            screen.setText(this.answer + "");
-            this.isCalculatorFieldClear = true;
-            this.operand1 = null;
-            this.operand2 = null;
-            this.operator = "";
-            this.last_click = true;
-            this.operator_state = false;
-        } else if (operator.equals("d")) {
-//            this.answer = 1 / Float.parseFloat(screen.getText().toString());
-            screen.setText(this.answer + "");
-            this.isCalculatorFieldClear = true;
-            this.operand1 = null;
-            this.operand2 = null;
-            this.operator = "";
-            this.last_click = true;
-            this.operator_state = false;
-        } else if (operator.equals("^")) this.operator = "^";
-        else if (operator.equals("%")) this.operator = "%";
-        else if (operator.equals("=")) {
-            this.operator = "=";
+        else {
+            insert_text("0.");
         }
     }
-
     public void ButtonClickHandler(View v) {
         EditText screen = (EditText) findViewById(R.id.screen);
         switch (v.getId()) {
@@ -165,8 +188,12 @@ public class MainActivity extends AppCompatActivity {
                 insert_text("9");
                 break;
             case R.id.buttonPoint:
-                if (!screen.getText().toString().contains(".") || this.operator_state) {
-                    insert_text(".");
+//                if (!screen.getText().toString().contains(".") || this.operator_state) {
+//                    insert_text(".");
+//                }
+                if (!isLastApperenceOperatorSame(".")) {
+                    checkIsNumberBeforeComaCharacter();
+//                    insert_text(".");
                 }
                 break;
             case R.id.buttonAdd:
@@ -195,9 +222,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.buttonEquals:
 //                set_operator("=");
-                EditText asd = (EditText) findViewById(R.id.screen);
-                expression = new Expression(asd.getText().toString());
-                Log.d("wynik", String.valueOf(expression.eval()));
+                calculate();
                 break;
 //            case R.id.buttonSqr:	set_operator("√"); break;
 //            case R.id.buttonPow:	set_operator("^"); break;
