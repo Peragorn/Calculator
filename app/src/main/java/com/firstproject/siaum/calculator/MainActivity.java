@@ -2,10 +2,15 @@ package com.firstproject.siaum.calculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import com.udojava.evalex.Expression;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,11 +18,13 @@ public class MainActivity extends AppCompatActivity {
     boolean operator_state = false;
     boolean insert_state = false;
     boolean last_click = false;
-    BigDecimal operand1 ;
-    BigDecimal operand2 ;
+    BigDecimal operand1;
+    BigDecimal operand2;
 
     BigDecimal answer = new BigDecimal("0.0");
     String operator = "";
+
+    Expression expression;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +32,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         android.support.v7.app.ActionBar bar = getSupportActionBar();
-        if(bar != null){
+        if (bar != null) {
             bar.hide();
         }
         
     }
+
     public void calculator() {
         EditText screen = (EditText) findViewById(R.id.screen);
         if (screen.getText().toString().equals(".")) {
@@ -70,6 +78,17 @@ public class MainActivity extends AppCompatActivity {
         screen.append(text);
     }
 
+    public boolean isLastApperenceOperatorSame(String text) {
+        EditText screen = (EditText) findViewById(R.id.screen);
+        String screenText = screen.getText().toString();
+        if (screenText.substring(screenText.length() - 1 ).equals(text)) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public void set_operator(String operator) {
         EditText screen = (EditText) findViewById(R.id.screen);
         if (screen.getText().toString().equals(".")) screen.setText("0");
@@ -107,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             this.operator_state = false;
         } else if (operator.equals("^")) this.operator = "^";
         else if (operator.equals("%")) this.operator = "%";
-        else if (operator.equals("=")){
+        else if (operator.equals("=")) {
             this.operator = "=";
         }
     }
@@ -151,19 +170,34 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.buttonAdd:
-                set_operator("+");
+                if (!isLastApperenceOperatorSame("+")) {
+                    insert_text("+");
+                }
+//                set_operator("+");
                 break;
             case R.id.buttonMinus:
-                set_operator("-");
+                if (!isLastApperenceOperatorSame("-")) {
+                    insert_text("-");
+                }
+//                set_operator("-");
                 break;
             case R.id.buttonMultiplication:
-                set_operator("*");
+                if (!isLastApperenceOperatorSame("*")) {
+                    insert_text("*");
+                }
+//                set_operator("*");
                 break;
             case R.id.buttonDivision:
-                set_operator("/");
+                if (!isLastApperenceOperatorSame("/")) {
+                    insert_text("/");
+                }
+//                set_operator("/");
                 break;
             case R.id.buttonEquals:
-                set_operator("=");
+//                set_operator("=");
+                EditText asd = (EditText) findViewById(R.id.screen);
+                expression = new Expression(asd.getText().toString());
+                Log.d("wynik", String.valueOf(expression.eval()));
                 break;
 //            case R.id.buttonSqr:	set_operator("√"); break;
 //            case R.id.buttonPow:	set_operator("^"); break;
