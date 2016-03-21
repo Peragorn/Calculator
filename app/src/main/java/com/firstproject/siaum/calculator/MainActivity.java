@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         if(bar != null){
             bar.hide();
         }
-
+        
     }
     public void calculator() {
         EditText screen = (EditText) findViewById(R.id.screen);
