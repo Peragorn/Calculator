@@ -215,8 +215,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MR"
-        android:id="@+id/buttonMR"
+        android:text="( )"
+        android:id="@+id/buttonBracket"
         android:onClick="ButtonClickHandler"
         android:paddingBottom="-2dp"
         android:layout_alignTop="@+id/buttonC"
