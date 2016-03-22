@@ -2,15 +2,11 @@ package com.firstproject.siaum.calculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.EditText;
 
-import com.udojava.evalex.Expression;
-
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 //        screen.setText(this.answer + "");
 //    }
 
-    public void calculate(){
+    public void calculate() {
         EditText screen = (EditText) findViewById(R.id.screen);
 
         expression = new Expression(screen.getText().toString());
@@ -89,10 +85,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean isLastApperenceOperatorSame(String text) {
         EditText screen = (EditText) findViewById(R.id.screen);
         String screenText = screen.getText().toString();
-        if (screenText.substring(screenText.length() - 1 ).equals(text)) {
+        if (screenText.substring(screenText.length() - 1).equals(text)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -139,20 +134,20 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
-    public void checkIsNumberBeforeComaCharacter(){
+    public void checkIsNumberBeforeComaCharacter() {
         EditText screen = (EditText) findViewById(R.id.screen);
         String screenText = screen.getText().toString();
-        if(screenText.substring(screenText.length() - 1 ).equals("0") && screenText.length()==1){
+        if (screenText.substring(screenText.length() - 1).equals("0") && screenText.length() == 1) {
             insert_text("0.");
             return;
         }
-        if (screenText.substring(screenText.length() - 1 ).matches(".*\\d+.*")) {
+        if (screenText.substring(screenText.length() - 1).matches(".*\\d+.*")) {
             insert_text(".");
-        }
-        else {
+        } else {
             insert_text("0.");
         }
     }
+
     public void ButtonClickHandler(View v) {
         EditText screen = (EditText) findViewById(R.id.screen);
         switch (v.getId()) {
@@ -257,6 +252,92 @@ public class MainActivity extends AppCompatActivity {
                 this.last_click = false;
                 this.isCalculatorFieldClear = true;
                 screen.setText("0");
+                break;
+
+            case R.id.buttonFactorial:
+                insert_text("SILNIA(");
+                break;
+
+            case R.id.buttonPercent:
+                insert_text("%");
+                break;
+
+            case R.id.buttonOneByX:
+                insert_text("1/");
+                break;
+
+            case R.id.buttonLeftBracket:
+                insert_text("(");
+                break;
+
+            case R.id.buttonBracketRight:
+                insert_text(")");
+                break;
+
+            case R.id.buttonPower2:
+                insert_text("^2");
+                break;
+
+            case R.id.buttonPower3:
+                insert_text("^3");
+                break;
+
+            case R.id.buttonPowerToN:
+                insert_text("^");
+                break;
+
+            case R.id.buttonNumberE:
+                insert_text("E");
+                break;
+
+            case R.id.buttonSqrt:
+                insert_text("SQRT(");
+                break;
+
+            case R.id.buttonSqrt3:
+                break;
+
+            case R.id.buttonLog:
+                insert_text("LOG(");
+                break;
+
+            case R.id.buttonLog10:
+                insert_text("LOG10(");
+                break;
+
+            case R.id.buttonSin:
+                insert_text("SIN(");
+                break;
+
+            case R.id.buttonCos:
+                insert_text("COS(");
+                break;
+
+            case R.id.buttonTan:
+                insert_text("TAN(");
+                break;
+
+            case R.id.buttonPi:
+                insert_text("PI");
+                break;
+
+            case R.id.buttonSinh:
+                insert_text("SINH(");
+                break;
+
+            case R.id.buttonCosh:
+                insert_text("COSH(");
+                break;
+
+            case R.id.buttonTanh:
+                insert_text("TANH(");
+                break;
+
+            case R.id.buttonRand:
+                insert_text("RANDOM()");
+                break;
+
+            default:
                 break;
         }
     }

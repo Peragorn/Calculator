@@ -17,7 +17,7 @@
         android:editable="false"
         android:gravity="right"
         android:text="0"
-        android:textSize="40dp"/>
+        android:textSize="40dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,28 +26,40 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/buttonFactorial"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
+
             android:text="@string/function_factorial" />
 
 
         <Button
+            android:id="@+id/buttonPercent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
+
             android:text="@string/character_percent" />
 
         <Button
+            android:id="@+id/buttonOneByX"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
+
             android:text="@string/function_one_by_x" />
 
         <Button
+            android:id="@+id/buttonLeftBracket"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
+
             android:text="@string/character_bracket_left" />
 
         <Button
@@ -90,27 +102,36 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/buttonPower2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_power_2" />
 
         <Button
+            android:id="@+id/buttonPower3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_power_3" />
 
         <Button
+
+            android:id="@+id/buttonPowerToN"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_power_n" />
 
         <Button
+            android:id="@+id/buttonNumberE"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/character_e" />
 
         <Button
@@ -153,27 +174,36 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/buttonSqrt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_sqrt" />
 
         <Button
+
+            android:id="@+id/buttonSqrt3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_sqrt_3" />
 
         <Button
+            android:id="@+id/buttonLog"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_log" />
 
         <Button
+            android:id="@+id/buttonLog10"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_log_10" />
 
         <Button
@@ -216,27 +246,35 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/buttonSin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_sin" />
 
         <Button
+            android:id="@+id/buttonCos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_cos" />
 
         <Button
+            android:id="@+id/buttonTan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_tan" />
 
         <Button
+            android:id="@+id/buttonPi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/character_pi" />
 
         <Button
@@ -279,27 +317,35 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/buttonSinh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_sinh" />
 
         <Button
+            android:id="@+id/buttonCosh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_cosh" />
 
         <Button
+            android:id="@+id/buttonTanh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_tanh" />
 
         <Button
+            android:id="@+id/buttonRand"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="ButtonClickHandler"
             android:text="@string/function_rand" />
 
         <Button
