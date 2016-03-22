@@ -3,8 +3,10 @@ package com.firstproject.siaum.calculator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.math.BigDecimal;
 
@@ -13,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     boolean isCalculatorFieldClear = true;
     boolean insert_state = false;
     boolean last_click = false;
-    String[] operatorTable = {"+", "-", "*", "/", "."};
+    String[] operatorTable = {"+", "-", "*", "/"};
 
     BigDecimal answer = new BigDecimal("0.0");
 
@@ -34,9 +36,13 @@ public class MainActivity extends AppCompatActivity {
         EditText screen = (EditText) findViewById(R.id.screen);
 
         expression = new Expression(screen.getText().toString());
-        this.answer = expression.eval();
-
-        screen.setText(this.answer + "");
+        try{
+            this.answer = expression.eval();
+            screen.setText(this.answer + "");
+        }catch(Exception e){
+            Toast.makeText(getBaseContext(), "Sprawdź poprawność składni", Toast.LENGTH_LONG).show();
+            Log.d("Error on calculate ", e.toString());
+        }
     }
 
     public void insert_text(String text) {
@@ -119,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 insert_text("9");
                 break;
             case R.id.buttonPoint:
-                if (!isLastApperenceOperatorSame(".") && !isLastApperenceOperatorExist()) {
+                if (!isLastApperenceOperatorSame(".")) {
                     checkIsNumberBeforeComaCharacter();
                 }
                 break;
