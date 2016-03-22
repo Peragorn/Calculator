@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,8 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
         Expression expression = new Expression(screen.getText().toString());
         try {
-            this.answer = expression.setPrecision(15).eval();
-            String result = String.format("%.0f",answer);
+            this.answer = expression.eval();
+            DecimalFormat df = new DecimalFormat("#.###############");
+            df.setRoundingMode(RoundingMode.CEILING);
+
+            String result = df.format(answer);
             screen.setText(result);
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Sprawdź poprawność składni", Toast.LENGTH_LONG).show();

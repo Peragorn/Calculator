@@ -27,7 +27,7 @@ public class Expression {
     private static final BigDecimal PARAMS_START = new BigDecimal(0);
 
     public Expression(String expression) {
-        this(expression, MathContext.DECIMAL32);
+        this(expression, MathContext.DECIMAL128);
     }
 
     public Expression(String expression, MathContext defaultMathContext) {
