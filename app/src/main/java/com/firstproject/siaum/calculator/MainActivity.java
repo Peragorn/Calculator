@@ -213,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonLeftBracket:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("(");
                 break;
 
