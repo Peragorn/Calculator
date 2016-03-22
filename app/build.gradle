@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile files ('libs/EvalEx-1.1.jar')
+    compile 'info.hoang8f:fbutton:1.0.5'
 }

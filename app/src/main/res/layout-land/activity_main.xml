@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical"
     android:paddingBottom="-2dp"
@@ -25,72 +26,100 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonFactorial"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            fbutton:shadowEnabled="false"
+            fbutton:buttonColor="@color/white"
+            fbutton:shadowColor="@color/fbutton_color_clouds"
+            fbutton:cornerRadius="5dp"
             android:onClick="ButtonClickHandler"
-
             android:text="@string/function_factorial" />
 
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonPercent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            fbutton:shadowEnabled="false"
+            fbutton:buttonColor="@color/white"
+            fbutton:shadowColor="@color/fbutton_color_clouds"
+            fbutton:cornerRadius="5dp"
             android:onClick="ButtonClickHandler"
-
             android:text="@string/character_percent" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonOneByX"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            fbutton:shadowEnabled="false"
+            fbutton:buttonColor="@color/white"
+            fbutton:shadowColor="@color/fbutton_color_clouds"
+            fbutton:cornerRadius="5dp"
             android:onClick="ButtonClickHandler"
-
             android:text="@string/function_one_by_x" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonLeftBracket"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            fbutton:shadowEnabled="false"
+            fbutton:buttonColor="@color/white"
+            fbutton:shadowColor="@color/fbutton_color_clouds"
+            fbutton:cornerRadius="5dp"
             android:onClick="ButtonClickHandler"
-
             android:text="@string/character_bracket_left" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonBracketRight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            fbutton:shadowEnabled="false"
+            fbutton:buttonColor="@color/white"
+            fbutton:shadowColor="@color/fbutton_color_clouds"
+            fbutton:cornerRadius="5dp"
             android:onClick="ButtonClickHandler"
             android:text="@string/character_bracket_right" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonC"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            fbutton:shadowEnabled="false"
+            fbutton:buttonColor="@color/white"
+            fbutton:shadowColor="@color/fbutton_color_clouds"
+            fbutton:cornerRadius="5dp"
             android:onClick="ButtonClickHandler"
             android:text="@string/character_C" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonDel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            fbutton:shadowEnabled="false"
+            fbutton:buttonColor="@color/white"
+            fbutton:shadowColor="@color/fbutton_color_clouds"
+            fbutton:cornerRadius="5dp"
             android:onClick="ButtonClickHandler"
             android:text="@string/character_delete" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/buttonDivision"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            fbutton:shadowEnabled="false"
+            fbutton:buttonColor="@color/white"
+            fbutton:shadowColor="@color/fbutton_color_clouds"
+            fbutton:cornerRadius="5dp"
             android:onClick="ButtonClickHandler"
             android:text="@string/character_divide" />
     </LinearLayout>
