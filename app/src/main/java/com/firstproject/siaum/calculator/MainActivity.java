@@ -11,14 +11,10 @@ import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static long back_pressed;
-    boolean isCalculatorFieldClear = true;
-    boolean insert_state = false;
-    boolean last_click = false;
-    String[] operatorTable = {"+", "-", "*", "/"};
-
-    BigDecimal answer = new BigDecimal("0.0");
-    Expression expression;
+    private static long backPresClickTime;
+    private boolean isCalculatorFieldClear = true;
+    private String[] operatorTable = {"+", "-", "*", "/"};
+    private BigDecimal answer = new BigDecimal("0.0");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,26 +28,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
-        if (back_pressed + 2000 > System.currentTimeMillis()){
+    public void onBackPressed() {
+        if (backPresClickTime + 2000 > System.currentTimeMillis()) {
             super.onBackPressed();
-        }
-        else{
+        } else {
             Toast.makeText(getBaseContext(), "Wciśnij ponownie aby wyjść!", Toast.LENGTH_SHORT).show();
-            back_pressed = System.currentTimeMillis();
+            backPresClickTime = System.currentTimeMillis();
         }
     }
 
     public void calculate() {
         EditText screen = (EditText) findViewById(R.id.screen);
 
-        expression = new Expression(screen.getText().toString());
-        try{
-            this.answer = expression.eval();
-            screen.setText(this.answer + "");
-        }catch(Exception e){
+        Expression expression = new Expression(screen.getText().toString());
+        try {
+            this.answer = expression.setPrecision(15).eval();
+            String result = String.format("%.0f",answer);
+            screen.setText(result);
+        } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Sprawdź poprawność składni", Toast.LENGTH_LONG).show();
-            Log.d("Error on calculate ", e.toString());
+            Log.e("Error on calculate ", e.toString());
         }
     }
 
@@ -61,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
             screen.setText("");
             this.isCalculatorFieldClear = false;
         }
-        this.insert_state = true;
-        this.last_click = true;
         screen.append(text);
     }
 
@@ -76,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isLastApperenceOperatorExist(){
+    public boolean isLastApperenceOperatorExist() {
         EditText screen = (EditText) findViewById(R.id.screen);
         String screenText = screen.getText().toString();
-        for(int i=0; i<operatorTable.length; i++){
-            if(screenText.substring(screenText.length() - 1).equals(operatorTable[i])){
+        for (int i = 0; i < operatorTable.length; i++) {
+            if (screenText.substring(screenText.length() - 1).equals(operatorTable[i])) {
                 return true;
             }
         }
