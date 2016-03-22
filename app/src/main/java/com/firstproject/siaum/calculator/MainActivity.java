@@ -15,11 +15,14 @@ public class MainActivity extends AppCompatActivity {
     private boolean isCalculatorFieldClear = true;
     private String[] operatorTable = {"+", "-", "*", "/"};
     private BigDecimal answer = new BigDecimal("0.0");
+    private EditText screen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        screen = (EditText) findViewById(R.id.screen);
 
         android.support.v7.app.ActionBar bar = getSupportActionBar();
         if (bar != null) {
@@ -38,12 +41,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calculate() {
-        EditText screen = (EditText) findViewById(R.id.screen);
-
         Expression expression = new Expression(screen.getText().toString());
         try {
-            this.answer = expression.setPrecision(15).eval();
-            String result = String.format("%.0f",answer);
+            this.answer = expression.eval();
+            String result = String.format("%.4f", answer);
             screen.setText(result);
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Sprawdź poprawność składni", Toast.LENGTH_LONG).show();
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void insert_text(String text) {
-        EditText screen = (EditText) findViewById(R.id.screen);
         if (this.isCalculatorFieldClear) {
             screen.setText("");
             this.isCalculatorFieldClear = false;
@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean isLastApperenceOperatorSame(String text) {
-        EditText screen = (EditText) findViewById(R.id.screen);
         String screenText = screen.getText().toString();
         if (screenText.substring(screenText.length() - 1).equals(text)) {
             return true;
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean isLastApperenceOperatorExist() {
-        EditText screen = (EditText) findViewById(R.id.screen);
+
         String screenText = screen.getText().toString();
         for (int i = 0; i < operatorTable.length; i++) {
             if (screenText.substring(screenText.length() - 1).equals(operatorTable[i])) {
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkIsNumberBeforeComaCharacter() {
-        EditText screen = (EditText) findViewById(R.id.screen);
         String screenText = screen.getText().toString();
         if (screenText.substring(screenText.length() - 1).equals("0") && screenText.length() == 1) {
             insert_text("0.");
@@ -95,8 +93,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void addMultiplyIfLastCharacterIsNotOperand() {
+        if (!isCalculatorFieldClear) {
+            String lastCharacter = "" + screen.getText().toString().charAt(screen.getText().toString().length() - 1);
+            for (String elem : operatorTable) {
+                if (elem.equals(lastCharacter)) {
+                    return;
+                }
+                if (lastCharacter.equals("(")) {
+                    return;
+                }
+            }
+            insert_text("*");
+        }
+    }
+
     public void ButtonClickHandler(View v) {
-        EditText screen = (EditText) findViewById(R.id.screen);
         switch (v.getId()) {
             case R.id.button0:
                 insert_text("0");
@@ -135,22 +147,30 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.buttonAdd:
                 if (!isLastApperenceOperatorSame("+") && !isLastApperenceOperatorExist()) {
-                    insert_text("+");
+                    if (!isCalculatorFieldClear) {
+                        insert_text("+");
+                    }
                 }
                 break;
             case R.id.buttonMinus:
                 if (!isLastApperenceOperatorSame("-") && !isLastApperenceOperatorExist()) {
-                    insert_text("-");
+                    if (!isCalculatorFieldClear) {
+                        insert_text("-");
+                    }
                 }
                 break;
             case R.id.buttonMultiplication:
                 if (!isLastApperenceOperatorSame("*") && !isLastApperenceOperatorExist()) {
-                    insert_text("*");
+                    if (!isCalculatorFieldClear) {
+                        insert_text("*");
+                    }
                 }
                 break;
             case R.id.buttonDivision:
                 if (!isLastApperenceOperatorSame("/") && !isLastApperenceOperatorExist()) {
-                    insert_text("/");
+                    if (!isCalculatorFieldClear) {
+                        insert_text("/");
+                    }
                 }
                 break;
             case R.id.buttonEquals:
@@ -173,11 +193,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonFactorial:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("SILNIA(");
                 break;
 
             case R.id.buttonPercent:
-                insert_text("%");
+                if (!isCalculatorFieldClear) {
+                    insert_text("%");
+                }
                 break;
 
             case R.id.buttonOneByX:
@@ -189,70 +212,91 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonBracketRight:
-                insert_text(")");
+                if (!isCalculatorFieldClear) {
+                    insert_text(")");
+                }
                 break;
 
             case R.id.buttonPower2:
-                insert_text("^2");
+                if (!isCalculatorFieldClear) {
+                    insert_text("^2");
+                }
                 break;
 
             case R.id.buttonPower3:
-                insert_text("^3");
+                if (!isCalculatorFieldClear) {
+                    insert_text("^3");
+                }
                 break;
 
             case R.id.buttonPowerToN:
-                insert_text("^");
+                if (!isCalculatorFieldClear) {
+                    insert_text("^");
+                }
                 break;
 
             case R.id.buttonNumberE:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("E");
                 break;
 
             case R.id.buttonSqrt:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("SQRT(");
                 break;
 
             case R.id.buttonSqrt3:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("SQRT3(");
                 break;
 
             case R.id.buttonLog:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("LOG(");
                 break;
 
             case R.id.buttonLog10:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("LOG10(");
                 break;
 
             case R.id.buttonSin:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("SIN(");
                 break;
 
             case R.id.buttonCos:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("COS(");
                 break;
 
             case R.id.buttonTan:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("TAN(");
                 break;
 
             case R.id.buttonPi:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("PI");
                 break;
 
             case R.id.buttonSinh:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("SINH(");
                 break;
 
             case R.id.buttonCosh:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("COSH(");
                 break;
 
             case R.id.buttonTanh:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("TANH(");
                 break;
 
             case R.id.buttonRand:
+                addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("RANDOM()");
                 break;
 
