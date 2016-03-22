@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             DecimalFormat df = new DecimalFormat("#.###############");
             df.setRoundingMode(RoundingMode.CEILING);
             String result = df.format(answer);
-            screen.setText(result);
+            screen.setText(result.replace(",","."));
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Sprawdź poprawność składni", Toast.LENGTH_LONG).show();
             Log.e("Error on calculate ", e.toString());
