@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static long back_pressed;
     boolean isCalculatorFieldClear = true;
     boolean insert_state = false;
     boolean last_click = false;
@@ -29,6 +30,17 @@ public class MainActivity extends AppCompatActivity {
         android.support.v7.app.ActionBar bar = getSupportActionBar();
         if (bar != null) {
             bar.hide();
+        }
+    }
+
+    @Override
+    public void onBackPressed(){
+        if (back_pressed + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+        }
+        else{
+            Toast.makeText(getBaseContext(), "Wciśnij ponownie aby wyjść!", Toast.LENGTH_SHORT).show();
+            back_pressed = System.currentTimeMillis();
         }
     }
 
