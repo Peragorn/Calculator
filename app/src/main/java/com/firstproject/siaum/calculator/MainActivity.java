@@ -2,7 +2,6 @@ package com.firstproject.siaum.calculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
 import android.view.View;
 import android.widget.EditText;
 
@@ -16,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     String[] operatorTable = {"+", "-", "*", "/", "."};
 
     BigDecimal answer = new BigDecimal("0.0");
-
     Expression expression;
 
     @Override
@@ -203,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonSqrt3:
+                insert_text("SQRT3(");
                 break;
 
             case R.id.buttonLog:

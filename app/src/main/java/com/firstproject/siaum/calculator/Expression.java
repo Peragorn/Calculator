@@ -328,12 +328,19 @@ public class Expression {
             public BigDecimal eval(List<BigDecimal> parameters) {
                 int d = parameters.get(0).intValue();
                 BigDecimal result = new BigDecimal("1");
-                BigDecimal temp = new BigDecimal("1");
-
-                do{
-                    BigDecimal multiply = new BigDecimal(""+d);
+                do {
+                    BigDecimal multiply = new BigDecimal("" + d);
                     result = result.multiply(multiply);
-                } while (--d>0);
+                } while (--d > 0);
+                return new BigDecimal(String.valueOf(result), Expression.this.mc);
+            }
+        });
+
+        this.addFunction(new Expression.Function("SQRT3", 1) {
+            public BigDecimal eval(List<BigDecimal> parameters) {
+                double oneByThree = ( 1.0 / 3);
+                BigDecimal value = parameters.get(0);
+                BigDecimal result = new BigDecimal(Math.pow(value.doubleValue(), oneByThree));
                 return new BigDecimal(String.valueOf(result), Expression.this.mc);
             }
         });
