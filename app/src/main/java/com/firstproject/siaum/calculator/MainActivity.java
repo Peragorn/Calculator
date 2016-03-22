@@ -14,6 +14,8 @@ import java.text.DecimalFormat;
 public class MainActivity extends AppCompatActivity {
 
     private static long backPresClickTime;
+    private int defaultOperatorSizeFlagValue = 1;
+    private boolean isFisrtClick = true;
     private boolean isCalculatorFieldClear = true;
     private String[] operatorTable = {"+", "-", "*", "/"};
     private BigDecimal answer = new BigDecimal("0.0");
@@ -65,13 +67,31 @@ public class MainActivity extends AppCompatActivity {
         screen.append(text);
     }
 
-    public boolean isLastApperenceOperatorSame(String text) {
+    public  void delete_text(){
+        String text = screen.getText().toString();
+        screen.setText((text.substring(0, text.length() - 2)));
+        if(screen.getText().toString().length()==0){
+            screen.setText("0");
+            isCalculatorFieldClear=true;
+        }
+    }
+
+    public boolean isLastApperenceOperatorSame(String text, int operandSize) {
         String screenText = screen.getText().toString();
-        if (screenText.substring(screenText.length() - 1).equals(text)) {
-            return true;
-        } else {
+        try{
+            if (screenText.substring(screenText.length() - operandSize).equals(text)) {
+                return true;
+            } else {
+                return false;
+            }
+        }catch(Exception e){
+            Log.e("screenText is 0", String.valueOf(e));
             return false;
         }
+    }
+
+    public boolean isLastApperenceOperatorSame(String text) {
+        return isLastApperenceOperatorSame(text, defaultOperatorSizeFlagValue);
     }
 
     public boolean isLastApperenceOperatorExist() {
@@ -304,6 +324,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.buttonRand:
                 addMultiplyIfLastCharacterIsNotOperand();
                 insert_text("RANDOM()");
+                break;
+
+            case R.id.buttonPlusMinus:
+                if(!isLastApperenceOperatorSame("(-",2) && isFisrtClick){
+                    insert_text("(-");
+                    isFisrtClick=false;
+                }
+                else {
+                    delete_text();
+                    isFisrtClick=true;
+                }
                 break;
 
             default:
