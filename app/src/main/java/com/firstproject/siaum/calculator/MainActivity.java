@@ -68,11 +68,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public  void delete_text(){
-        String text = screen.getText().toString();
-        screen.setText((text.substring(0, text.length() - 2)));
-        if(screen.getText().toString().length()==0){
-            screen.setText("0");
-            isCalculatorFieldClear=true;
+        try{
+            String text = screen.getText().toString();
+            screen.setText((text.substring(0, text.length() - 2)));
+            if(screen.getText().toString().length()==0){
+                screen.setText("0");
+                isCalculatorFieldClear=true;
+            }
+        }catch(Exception e){
+            Log.e("", String.valueOf(e));
         }
     }
 
@@ -95,14 +99,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean isLastApperenceOperatorExist() {
-
-        String screenText = screen.getText().toString();
-        for (int i = 0; i < operatorTable.length; i++) {
-            if (screenText.substring(screenText.length() - 1).equals(operatorTable[i])) {
-                return true;
+        try{
+            String screenText = screen.getText().toString();
+            for (int i = 0; i < operatorTable.length; i++) {
+                if (screenText.substring(screenText.length() - defaultOperatorSizeFlagValue).equals(operatorTable[i])) {
+                    return true;
+                }
             }
+            return false;
+        }catch(Exception e){
+            Log.e("", String.valueOf(e));
+            return false;
         }
-        return false;
     }
 
     public void checkIsNumberBeforeComaCharacter() {
