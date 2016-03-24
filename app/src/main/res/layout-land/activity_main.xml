@@ -501,18 +501,6 @@
             android:layout_marginRight="15dp" />
 
         <info.hoang8f.widget.FButton
-            android:id="@+id/button0"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            fbutton:shadowEnabled="false"
-            android:textColor="@android:color/white"
-            fbutton:buttonColor="@color/fbutton_color_midnight_blue"
-            android:onClick="ButtonClickHandler"
-            android:text="@string/character_0"
-            android:layout_marginRight="5dp" />
-
-        <info.hoang8f.widget.FButton
             android:id="@+id/buttonPoint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -522,6 +510,18 @@
             fbutton:buttonColor="@color/fbutton_color_midnight_blue"
             android:onClick="ButtonClickHandler"
             android:text="@string/character_coma"
+            android:layout_marginRight="5dp" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/button0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            fbutton:shadowEnabled="false"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_midnight_blue"
+            android:onClick="ButtonClickHandler"
+            android:text="@string/character_0"
             android:layout_marginRight="5dp" />
 
         <info.hoang8f.widget.FButton

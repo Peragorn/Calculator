@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         screen.append(text);
     }
 
-    public void delete_text() {
+    public void handlePlusMinusButton() {
         try {
             String text = screen.getText().toString();
             if (text.substring(text.length() - 2, text.length()).equals("(-")) {
@@ -347,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
                     insert_text("(-");
                     isFisrtClick = false;
                 } else {
-                    delete_text();
+                    handlePlusMinusButton();
                     isFisrtClick = true;
                 }
                 break;
