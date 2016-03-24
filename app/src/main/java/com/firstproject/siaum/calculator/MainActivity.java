@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             DecimalFormat df = new DecimalFormat("#.###############");
             df.setRoundingMode(RoundingMode.CEILING);
             String result = df.format(answer);
-            screen.setText(result.replace(",","."));
+            screen.setText(result.replace(",", "."));
             this.isFisrtClick = true;
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Sprawdź poprawność składni", Toast.LENGTH_LONG).show();
@@ -68,30 +68,30 @@ public class MainActivity extends AppCompatActivity {
         screen.append(text);
     }
 
-    public  void delete_text(){
-        try{
+    public void delete_text() {
+        try {
             String text = screen.getText().toString();
-            if(text.substring(text.length() - 2, text.length()).equals("(-") ){
+            if (text.substring(text.length() - 2, text.length()).equals("(-")) {
                 screen.setText((text.substring(0, text.length() - 2)));
             }
-            if(screen.getText().toString().length()==0){
+            if (screen.getText().toString().length() == 0) {
                 screen.setText("0");
-                isCalculatorFieldClear=true;
+                isCalculatorFieldClear = true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.e("", String.valueOf(e));
         }
     }
 
     public boolean isLastApperenceOperatorSame(String text, int operandSize) {
         String screenText = screen.getText().toString();
-        try{
+        try {
             if (screenText.substring(screenText.length() - operandSize).equals(text)) {
                 return true;
             } else {
                 return false;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.e("screenText is 0", String.valueOf(e));
             return false;
         }
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean isLastApperenceOperatorExist() {
-        try{
+        try {
             String screenText = screen.getText().toString();
             for (int i = 0; i < operatorTable.length; i++) {
                 if (screenText.substring(screenText.length() - defaultOperatorSizeFlagValue).equals(operatorTable[i])) {
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             return false;
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.e("", String.valueOf(e));
             return false;
         }
@@ -130,6 +130,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addMultiplyIfLastCharacterIsNotOperand() {
+        if (screen.getText().toString().equals("0")){
+            isCalculatorFieldClear = true;
+        }
         if (!isCalculatorFieldClear) {
             String lastCharacter = "" + screen.getText().toString().charAt(screen.getText().toString().length() - 1);
             for (String elem : operatorTable) {
@@ -340,13 +343,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonPlusMinus:
-                if(!isLastApperenceOperatorSame("(-",2) && isFisrtClick){
+                if (!isLastApperenceOperatorSame("(-", 2) && isFisrtClick) {
                     insert_text("(-");
-                    isFisrtClick=false;
-                }
-                else {
+                    isFisrtClick = false;
+                } else {
                     delete_text();
-                    isFisrtClick=true;
+                    isFisrtClick = true;
                 }
                 break;
 
