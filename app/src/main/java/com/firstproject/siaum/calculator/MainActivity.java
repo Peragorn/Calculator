@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private int defaultOperatorSizeFlagValue = 1;
     private boolean isFisrtClick = true;
     private boolean isCalculatorFieldClear = true;
-    private String[] operatorTable = {"+", "-", "*", "/"};
+    private String[] operatorTable = {"+", "-", "*", "/", "%"};
     private BigDecimal answer = new BigDecimal("0.0");
     private EditText screen;
 
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             df.setRoundingMode(RoundingMode.CEILING);
             String result = df.format(answer);
             screen.setText(result.replace(",","."));
+            this.isFisrtClick = true;
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Sprawdź poprawność składni", Toast.LENGTH_LONG).show();
             Log.e("Error on calculate ", e.toString());
@@ -70,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
     public  void delete_text(){
         try{
             String text = screen.getText().toString();
-            screen.setText((text.substring(0, text.length() - 2)));
+            if(text.substring(text.length() - 2, text.length()).equals("(-") ){
+                screen.setText((text.substring(0, text.length() - 2)));
+            }
             if(screen.getText().toString().length()==0){
                 screen.setText("0");
                 isCalculatorFieldClear=true;
@@ -216,12 +219,14 @@ public class MainActivity extends AppCompatActivity {
                     this.isCalculatorFieldClear = false;
                 } else {
                     screen.setText("0");
+                    this.isFisrtClick = true;
                     this.isCalculatorFieldClear = true;
                 }
                 break;
             case R.id.buttonC:
                 this.answer = null;
                 this.isCalculatorFieldClear = true;
+                this.isFisrtClick = true;
                 screen.setText("0");
                 break;
 
@@ -231,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonPercent:
-                if (!isCalculatorFieldClear) {
+                if (!isCalculatorFieldClear && !isLastApperenceOperatorSame("%") && !isLastApperenceOperatorExist()) {
                     insert_text("%");
                 }
                 break;
