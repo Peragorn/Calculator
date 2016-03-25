@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private int defaultOperatorSizeFlagValue = 1;
     private boolean isFisrtClick = true;
     private boolean isCalculatorFieldClear = true;
-    private String[] operatorTable = {"+", "-", "*", "/", "%"};
+    private String[] operatorTable = {"+", "-", "*", "/", "%", "^"};
     private BigDecimal answer = new BigDecimal("0.0");
     private EditText screen;
 
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.buttonPowerToN:
-                if (!isCalculatorFieldClear) {
+                if (!isCalculatorFieldClear && !isLastApperenceOperatorSame("^") && !isLastApperenceOperatorExist()) {
                     insert_text("^");
                 }
                 break;
